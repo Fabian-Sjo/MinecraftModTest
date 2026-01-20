@@ -1,13 +1,13 @@
 {
-  "itemGroup.examplemod": "Example Mod Tab",
-  "block.examplemod.example_block": "Example Block",
-  "item.examplemod.example_item": "Example Item",
+  "itemGroup.respawnblock": "Example Mod Tab",
+  "block.respawnblock.example_block": "Example Block",
+  "item.respawnblock.example_item": "Example Item",
 
-  "examplemod.configuration.title": "Example Mod Configs",
-  "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",
-  "examplemod.configuration.section.examplemod.common.toml.title": "Example Mod Configs",
-  "examplemod.configuration.items": "Item List",
-  "examplemod.configuration.logDirtBlock": "Log Dirt Block",
-  "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "examplemod.configuration.magicNumber": "Magic Number"
+  "respawnblock.configuration.title": "Example Mod Configs",
+  "respawnblock.configuration.section.respawnblock.common.toml": "Example Mod Configs",
+  "respawnblock.configuration.section.respawnblock.common.toml.title": "Example Mod Configs",
+  "respawnblock.configuration.items": "Item List",
+  "respawnblock.configuration.logDirtBlock": "Log Dirt Block",
+  "respawnblock.configuration.magicNumberIntroduction": "Magic Number Text",
+  "respawnblock.configuration.magicNumber": "Magic Number"
 }
