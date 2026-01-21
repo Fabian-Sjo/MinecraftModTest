@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -23,15 +21,11 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTab.Output;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.MapItem;
+import net.minecraft.world.item.equipment.ArmorMaterial;
+import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.entity.UUIDLookup;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.portal.TeleportTransition;
-import net.minecraft.world.phys.Vec3;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -44,14 +38,12 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerRespawnPositionEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent.PlayerChangedDimensionEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.transfer.item.ItemStacksResourceHandler;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ExampleMod.MODID)
@@ -79,7 +71,7 @@ public class ExampleMod {
 	// namespace and path
 	public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block",
 			EXAMPLE_BLOCK);
-
+	public static final DeferredItem<Item> BOOTS_OF_RABBIT = RabbitArmor.createBoots(ITEMS);
 	// Creates a new food item with the id "examplemod:example_id", nutrition 1 and
 	// saturation 2
 	// public static final DeferredItem<Item> EXAMPLE_ITEM =
@@ -90,6 +82,7 @@ public class ExampleMod {
 			"example_item",
 			EntitySpawnPointBinderItem::new,
 			props -> props.stacksTo(1));
+
 	// Creates a creative tab with the id "examplemod:example_tab" for the example
 	// item, that is placed after the combat tab
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS
@@ -105,8 +98,9 @@ public class ExampleMod {
 					}).build());
 
 	private static void addItemsToTab(Output output) {
-		output.accept(EXAMPLE_ITEM.get());
-		output.accept(EXAMPLE_BLOCK_ITEM.get());
+		output.accept(EXAMPLE_ITEM);
+		output.accept(BOOTS_OF_RABBIT);
+		output.accept(EXAMPLE_BLOCK_ITEM);
 	}
 
 	// Create the DeferredRegister for attachment types
@@ -166,9 +160,9 @@ public class ExampleMod {
 
 	// Add the example block item to the building blocks tab
 	private void addCreative(BuildCreativeModeTabContentsEvent event) {
-		if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-			event.accept(EXAMPLE_BLOCK_ITEM);
-		}
+		// if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+		// event.accept(EXAMPLE_BLOCK_ITEM);
+		// }
 	}
 
 	// You can use SubscribeEvent and let the Event Bus discover methods to call
