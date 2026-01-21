@@ -14,8 +14,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.event.entity.living.LivingEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEvent.LivingJumpEvent;
 
 @EventBusSubscriber(modid = ExampleMod.MODID)
@@ -26,7 +24,7 @@ public class RabbitBoots extends Item {
 	}
 
 	@SubscribeEvent
-	public static void onJump(LivingEvent.LivingJumpEvent event) {
+	public static void onJump(LivingJumpEvent event) {
 		ItemStack boots = event.getEntity().getItemBySlot(EquipmentSlot.FEET);
 		if (boots.getItem() instanceof RabbitBoots) {
 			event.getEntity().addDeltaMovement(new Vec3(0, 10, 0));

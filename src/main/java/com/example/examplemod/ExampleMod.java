@@ -59,6 +59,7 @@ public class ExampleMod {
 	// Create a Deferred Register to hold Items which will all be registered under
 	// the "examplemod" namespace
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+
 	// Create a Deferred Register to hold CreativeModeTabs which will all be
 	// registered under the "examplemod" namespace
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister
@@ -83,6 +84,8 @@ public class ExampleMod {
 			"example_item",
 			EntitySpawnPointBinderItem::new,
 			props -> props.stacksTo(1));
+	public static final DeferredItem<Item> TEST_TEXTURE = ITEMS.registerSimpleItem(
+			"bismuth");
 
 	// Creates a creative tab with the id "examplemod:example_tab" for the example
 	// item, that is placed after the combat tab
@@ -102,6 +105,7 @@ public class ExampleMod {
 		output.accept(EXAMPLE_ITEM);
 		output.accept(BOOTS_OF_RABBIT);
 		output.accept(EXAMPLE_BLOCK_ITEM);
+		output.accept(TEST_TEXTURE);
 	}
 
 	// Create the DeferredRegister for attachment types
