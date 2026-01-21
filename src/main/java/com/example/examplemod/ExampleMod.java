@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.Codec;
 
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
